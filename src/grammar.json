@@ -31,6 +31,10 @@
         {
           "type": "SYMBOL",
           "name": "_notation_stmt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_inout_stmt"
         }
       ]
     },
@@ -740,6 +744,101 @@
           "value": ")"
         }
       ]
+    },
+    "_inout_stmt": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_input_stmt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_output_stmt"
+        }
+      ]
+    },
+    "_input_stmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "input"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_input_kind"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_math_string"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "_output_stmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "output"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_output_kind"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_math_string"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "_input_kind": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
+    "_output_kind": {
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "_lexeme": {
       "type": "CHOICE",

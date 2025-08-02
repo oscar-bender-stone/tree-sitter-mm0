@@ -103,6 +103,10 @@
     "named": false
   },
   {
+    "type": "input",
+    "named": false
+  },
+  {
     "type": "max",
     "named": false
   },
@@ -113,6 +117,10 @@
   {
     "type": "number",
     "named": true
+  },
+  {
+    "type": "output",
+    "named": false
   },
   {
     "type": "prec",

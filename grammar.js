@@ -24,6 +24,7 @@ module.exports = grammar({
         $._assert_stmt,
         $._def_stmt,
         $._notation_stmt,
+        $._inout_stmt,
       ),
 
     // Sorts:
@@ -133,6 +134,28 @@ module.exports = grammar({
       seq('notation', $.identifier, repeat($._type_binder), ';'),
     _notation_literal: ($) => choice($._prec_constant, $.identifier),
     _prec_constant: ($) => seq('(', $._constant, ':', $._precedence_lvl, ')'),
+
+    // Input and Output
+    // [https://github.com/digama0/mm0/blob/master/mm0.md#sorts]
+    _inout_stmt: ($) => choice($._input_stmt, $._output_stmt),
+    _input_stmt: ($) =>
+      seq(
+        'input',
+        $._input_kind,
+        ':',
+        repeat(choice($.identifier, $._math_string)),
+        ';',
+      ),
+    _output_stmt: ($) =>
+      seq(
+        'output',
+        $._output_kind,
+        ':',
+        repeat(choice($.identifier, $._math_string)),
+        ';',
+      ),
+    _input_kind: ($) => $.identifier,
+    _output_kind: ($) => $.identifier,
 
     // Lexical structure
     // [https://github.com/digama0/mm0/blob/master/mm0.md#lexical-structure]
