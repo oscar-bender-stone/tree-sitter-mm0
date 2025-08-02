@@ -920,7 +920,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z][a-zA-Z]*"
+      "value": "[a-zA-Z][a-zA-Z0-9_]*"
     },
     "_whitestuff": {
       "type": "CHOICE",
@@ -949,10 +949,6 @@
       ]
     },
     "comment": {
-      "type": "SYMBOL",
-      "name": "_line_comment"
-    },
-    "_line_comment": {
       "type": "SEQ",
       "members": [
         {
@@ -968,8 +964,8 @@
   },
   "extras": [
     {
-      "type": "PATTERN",
-      "value": "\\s"
+      "type": "SYMBOL",
+      "name": "comment"
     }
   ],
   "conflicts": [],

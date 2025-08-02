@@ -1,5 +1,11 @@
 [
   {
+    "type": "comment",
+    "named": true,
+    "extra": true,
+    "fields": {}
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -44,6 +50,10 @@
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": "--",
     "named": false
   },
   {

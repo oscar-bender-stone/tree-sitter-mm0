@@ -180,7 +180,6 @@ module.exports = grammar({
 
     _whitestuff: ($) => choice($._whitechar, $.comment),
     _whitechar: ($) => choice(' ', '\n'),
-    comment: ($) => $._line_comment,
-    _line_comment: ($) => seq('--', /[^\n]*\n/),
+    comment: ($) => seq('--', /[^\n]*\n/),
   },
 });
