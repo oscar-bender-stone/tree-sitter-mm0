@@ -7,6 +7,8 @@
 ":" @punctuation.delimiter
 ";" @punctuation.delimiter
 
+"_" @variable
+
 "axiom" @keyword
 "coercion"  @keyword
 "def" @keyword
@@ -31,5 +33,6 @@
 (identifier) @variable
 (comment) @comment
 (number) @number
+(term) @function
 (type) @type
 (math_string) @string

@@ -44,22 +44,17 @@ module.exports = grammar({
     // Term constructors
     //  [https://github.com/digama0/mm0/blob/master/mm0.md#term-constructors]
     _term_stmt: ($) =>
-      seq(
-        'term',
-        $.identifier,
-        repeat($._type_binder),
-        ':',
-        $._arrow_type,
-        ';',
-      ),
+      seq('term', $.term, repeat($._type_binder), ':', $._arrow_type, ';'),
+    term: ($) => $.identifier,
     _type_binder: ($) =>
       choice(
-        seq('{', repeat($.identifier), ':', $.type, '}'),
-        seq('(', repeat($._identifier_), ':', $.type, ')'),
+        seq('{', repeat($.term), ':', $.type, '}'),
+        seq('(', repeat($._term_), ':', $.type, ')'),
       ),
     _arrow_type: ($) => choice($.type, seq($.type, '>', $._arrow_type)),
     type: ($) => seq($.identifier, repeat($.identifier)),
 
+    _term_: ($) => choice($.term, '_'),
     _identifier_: ($) => choice($.identifier, '_'),
 
     // Axiom and theorems:

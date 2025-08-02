@@ -108,7 +108,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "term"
         },
         {
           "type": "REPEAT",
@@ -131,6 +131,10 @@
         }
       ]
     },
+    "term": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
     "_type_binder": {
       "type": "CHOICE",
       "members": [
@@ -145,7 +149,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "SYMBOL",
-                "name": "identifier"
+                "name": "term"
               }
             },
             {
@@ -173,7 +177,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "SYMBOL",
-                "name": "_identifier_"
+                "name": "_term_"
               }
             },
             {
@@ -231,6 +235,19 @@
             "type": "SYMBOL",
             "name": "identifier"
           }
+        }
+      ]
+    },
+    "_term_": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "term"
+        },
+        {
+          "type": "STRING",
+          "value": "_"
         }
       ]
     },
@@ -911,6 +928,10 @@
       ]
     },
     "_math_string": {
+      "type": "SYMBOL",
+      "name": "math_string"
+    },
+    "math_string": {
       "type": "PATTERN",
       "value": "\\$[^\\$]*\\$"
     },
