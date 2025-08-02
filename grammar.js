@@ -165,7 +165,8 @@ module.exports = grammar({
     _symbol: ($) =>
       choice('*', '>', '.', ':', ';', '(', ')', '{', '}', '=', '_'),
 
-    _math_string: ($) => /\$[^\$]*\$/,
+    _math_string: ($) => $.math_string,
+    math_string: ($) => /\$[^\$]*\$/,
 
     // Adds math-string from secondary parsing:
     // [https://github.com/digama0/mm0/blob/master/mm0.md#secondary-parsing]
