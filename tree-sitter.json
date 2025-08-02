@@ -1,0 +1,41 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "mm0",
+      "camelcase": "MM0",
+      "title": "MM0/MM1",
+      "scope": "source.mm0",
+      "file-types": [
+        "mm0",
+        "mmu",
+        "mm1"
+      ],
+      "injection-regex": "^mm0$",
+      "class-name": "TreeSitterMm0"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Grammar for the MM0 and MM1 proof languages.",
+    "authors": [
+      {
+        "name": "Oscar Bender-Stone",
+        "email": "oscar-bender-stone@protonmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/tree-sitter/tree-sitter-mm0"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
