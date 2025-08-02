@@ -59,15 +59,39 @@
     "named": false
   },
   {
+    "type": "axiom",
+    "named": false
+  },
+  {
+    "type": "free",
+    "named": false
+  },
+  {
     "type": "identifier",
     "named": true
+  },
+  {
+    "type": "provable",
+    "named": false
+  },
+  {
+    "type": "pure",
+    "named": false
   },
   {
     "type": "sort",
     "named": false
   },
   {
+    "type": "strict",
+    "named": false
+  },
+  {
     "type": "term",
+    "named": false
+  },
+  {
+    "type": "theorem",
     "named": false
   },
   {
