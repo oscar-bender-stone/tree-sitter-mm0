@@ -79,9 +79,157 @@
         }
       ]
     },
+    "_whitestuff": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_whitechar"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment"
+        }
+      ]
+    },
+    "_whitechar": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": " "
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        }
+      ]
+    },
+    "comment": {
+      "type": "SYMBOL",
+      "name": "_line_comment"
+    },
+    "_line_comment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[^\\n]*\\n"
+        }
+      ]
+    },
+    "_lexeme": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_symbol"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "math_string"
+        }
+      ]
+    },
+    "_symbol": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "operators"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "punctuation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "brackets"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "anonymous"
+        }
+      ]
+    },
+    "operators": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "*"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
+    },
+    "punctuation": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "brackets": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "anonymous": {
+      "type": "STRING",
+      "value": "_"
+    },
+    "number": {
+      "type": "PATTERN",
+      "value": "0|[1-9][0-9]*"
+    },
     "identifier": {
       "type": "PATTERN",
       "value": "[a-zA-Z][a-zA-Z]*"
+    },
+    "math_string": {
+      "type": "PATTERN",
+      "value": "\\$[^\\$]*\\$"
     }
   },
   "extras": [

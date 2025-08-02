@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-/// <reference types="tree-sitter-cli/dsl" />
+/// <reference types='tree-sitter-cli/dsl' />
 // @ts-check
 
 // Adapted from:
@@ -12,7 +12,7 @@
 // [https://github.com/digama0/mm0/blob/master/mm0.md#grammar-for-the-mm0-file-format]
 
 module.exports = grammar({
-  name: "mm0",
+  name: 'mm0',
 
   rules: {
     source_file: ($) => repeat($._statement),
@@ -26,16 +26,28 @@ module.exports = grammar({
     // pseudo-keywords need separate nodes
     _sort_stmt: ($) =>
       seq(
-        optional("pure"),
-        optional("strict"),
-        optional("provable"),
-        optional("free"),
-        "sort",
+        optional('pure'),
+        optional('strict'),
+        optional('provable'),
+        optional('free'),
+        'sort',
         $.identifier,
       ),
 
     // Lexical structure
     // [https://github.com/digama0/mm0/blob/master/mm0.md#lexical-structure]
+    _whitestuff: ($) => choice($._whitechar, $.comment),
+    _whitechar: ($) => choice(' ', '\n'),
+    comment: ($) => $._line_comment,
+    _line_comment: ($) => seq('--', /[^\n]*\n/),
+
+    _lexeme: ($) => choice($._symbol, $.identifier, $.number, $.math_string),
+    _symbol: ($) =>
+      choice('*', '>', '.', ':', ';', '(', ')', '{', '}', '=', '_'),
+    number: ($) => /0|[1-9][0-9]*/,
     identifier: ($) => /[a-zA-Z][a-zA-Z]*/,
+    // Adds math-string from secondary parsing:
+    // [https://github.com/digama0/mm0/blob/master/mm0.md#secondary-parsing]
+    math_string: ($) => /\$[^\$]*\$/,
   },
 });
