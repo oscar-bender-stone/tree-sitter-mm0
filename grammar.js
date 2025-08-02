@@ -22,8 +22,9 @@ module.exports = grammar({
         $._sort_stmt,
         // $.term_stmt
       ),
-    // TODO: decide if
-    // pseudo-keywords need separate nodes
+
+    // Sorts:
+    // [https://github.com/digama0/mm0/blob/master/mm0.md#sorts]
     _sort_stmt: ($) =>
       seq(
         optional('pure'),
@@ -34,20 +35,27 @@ module.exports = grammar({
         $.identifier,
       ),
 
+    // Term constructors
+    //  [https://github.com/digama0/mm0/blob/master/mm0.md#term-constructors]
+
     // Lexical structure
     // [https://github.com/digama0/mm0/blob/master/mm0.md#lexical-structure]
+    _lexeme: ($) => choice($._symbol, $.identifier, $.number, $._math_string),
+    _symbol: ($) =>
+      choice('*', '>', '.', ':', ';', '(', ')', '{', '}', '=', '_'),
+
+    // Adds math-string from secondary parsing:
+    // [https://github.com/digama0/mm0/blob/master/mm0.md#secondary-parsing]
+    _math_string: ($) => choice($.math_lexeme, $._math_whitespace),
+    _math_whitespace: ($) => /( |\n)*/,
+    math_lexeme: ($) => choice($.math_lexeme, $.identifier, '(', ')'),
+
+    number: ($) => /0|[1-9][0-9]*/,
+    identifier: ($) => /[a-zA-Z][a-zA-Z]*/,
+
     _whitestuff: ($) => choice($._whitechar, $.comment),
     _whitechar: ($) => choice(' ', '\n'),
     comment: ($) => $._line_comment,
     _line_comment: ($) => seq('--', /[^\n]*\n/),
-
-    _lexeme: ($) => choice($._symbol, $.identifier, $.number, $.math_string),
-    _symbol: ($) =>
-      choice('*', '>', '.', ':', ';', '(', ')', '{', '}', '=', '_'),
-    number: ($) => /0|[1-9][0-9]*/,
-    identifier: ($) => /[a-zA-Z][a-zA-Z]*/,
-    // Adds math-string from secondary parsing:
-    // [https://github.com/digama0/mm0/blob/master/mm0.md#secondary-parsing]
-    math_string: ($) => /\$[^\$]*\$/,
   },
 });

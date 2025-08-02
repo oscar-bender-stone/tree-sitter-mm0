@@ -79,6 +79,122 @@
         }
       ]
     },
+    "_lexeme": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_symbol"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_math_string"
+        }
+      ]
+    },
+    "_symbol": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "*"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "STRING",
+          "value": "_"
+        }
+      ]
+    },
+    "_math_string": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "math_lexeme"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_math_whitespace"
+        }
+      ]
+    },
+    "_math_whitespace": {
+      "type": "PATTERN",
+      "value": "( |\\n)*"
+    },
+    "math_lexeme": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "math_lexeme"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "number": {
+      "type": "PATTERN",
+      "value": "0|[1-9][0-9]*"
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z][a-zA-Z]*"
+    },
     "_whitestuff": {
       "type": "CHOICE",
       "members": [
@@ -121,115 +237,6 @@
           "value": "[^\\n]*\\n"
         }
       ]
-    },
-    "_lexeme": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_symbol"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "number"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "math_string"
-        }
-      ]
-    },
-    "_symbol": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "operators"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "punctuation"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "brackets"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "anonymous"
-        }
-      ]
-    },
-    "operators": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "*"
-        },
-        {
-          "type": "STRING",
-          "value": ">"
-        }
-      ]
-    },
-    "punctuation": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "."
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "STRING",
-          "value": ";"
-        }
-      ]
-    },
-    "brackets": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        },
-        {
-          "type": "STRING",
-          "value": "{"
-        },
-        {
-          "type": "STRING",
-          "value": "}"
-        }
-      ]
-    },
-    "anonymous": {
-      "type": "STRING",
-      "value": "_"
-    },
-    "number": {
-      "type": "PATTERN",
-      "value": "0|[1-9][0-9]*"
-    },
-    "identifier": {
-      "type": "PATTERN",
-      "value": "[a-zA-Z][a-zA-Z]*"
-    },
-    "math_string": {
-      "type": "PATTERN",
-      "value": "\\$[^\\$]*\\$"
     }
   },
   "extras": [
