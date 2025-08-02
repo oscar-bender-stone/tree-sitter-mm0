@@ -17,7 +17,14 @@ module.exports = grammar({
   rules: {
     source_file: ($) => repeat($._statement),
 
-    _statement: ($) => choice($._sort_stmt, $._term_stmt, $._assert_stmt),
+    _statement: ($) =>
+      choice(
+        $._sort_stmt,
+        $._term_stmt,
+        $._assert_stmt,
+        $._def_stmt,
+        $._notation_stmt,
+      ),
 
     // Sorts:
     // [https://github.com/digama0/mm0/blob/master/mm0.md#sorts]
@@ -74,6 +81,58 @@ module.exports = grammar({
         seq(choice($.type, $._formula), '>', $._formula_arrow_type),
       ),
     _formula: ($) => $._math_string,
+
+    // Definitions
+    // [https://github.com/digama0/mm0/blob/master/mm0.md#definitions]
+    _def_stmt: ($) =>
+      seq(
+        'def',
+        $.identifier,
+        repeat($._dummy_binder),
+        ':',
+        $.type,
+        optional(seq('=', $._formula)),
+        ';',
+      ),
+    _dummy_binder: ($) =>
+      choice(
+        seq('{', repeat($._dummy_identifier), ':', $.type, '}'),
+        seq('(', repeat($._dummy_identifier), ':', $.type, ')'),
+      ),
+    // To fix precedence, need to inline _identifier_ here
+    _dummy_identifier: ($) =>
+      choice('.', $.identifier, choice($.identifier, '_')),
+
+    // Notations
+    // [https://github.com/digama0/mm0/blob/master/mm0.md#notations]
+    // TODO: determine how to add a second tokenizer
+    _notation_stmt: ($) =>
+      choice(
+        $._delimiter_stmt,
+        $._simple_notation_stmt,
+        $._coercion_stmt,
+        $._gen_notation_stmt,
+      ),
+    _delimiter_stmt: ($) =>
+      seq('delimiter', $._math_string, optional($._math_string), ';'),
+    _simple_notation_stmt: ($) =>
+      seq(
+        choice('infixl', 'infixr', 'prefix'),
+        $.identifier,
+        ':',
+        $._constant,
+        'prec',
+        $._precedence_lvl,
+        ';',
+      ),
+    _constant: ($) => $._math_string,
+    _precedence_lvl: ($) => choice($.number, 'max'),
+    _coercion_stmt: ($) =>
+      seq('coercion', $.identifier, ':', $.identifier, '>', $.identifier, ';'),
+    _gen_notation_stmt: ($) =>
+      seq('notation', $.identifier, repeat($._type_binder), ';'),
+    _notation_literal: ($) => choice($._prec_constant, $.identifier),
+    _prec_constant: ($) => seq('(', $._constant, ':', $._precedence_lvl, ')'),
 
     // Lexical structure
     // [https://github.com/digama0/mm0/blob/master/mm0.md#lexical-structure]

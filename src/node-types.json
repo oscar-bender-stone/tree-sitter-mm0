@@ -13,6 +13,10 @@
           "named": true
         },
         {
+          "type": "number",
+          "named": true
+        },
+        {
           "type": "type",
           "named": true
         }
@@ -43,11 +47,19 @@
     "named": false
   },
   {
+    "type": ".",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
   {
     "type": ";",
+    "named": false
+  },
+  {
+    "type": "=",
     "named": false
   },
   {
@@ -63,12 +75,52 @@
     "named": false
   },
   {
+    "type": "coercion",
+    "named": false
+  },
+  {
+    "type": "def",
+    "named": false
+  },
+  {
+    "type": "delimiter",
+    "named": false
+  },
+  {
     "type": "free",
     "named": false
   },
   {
     "type": "identifier",
     "named": true
+  },
+  {
+    "type": "infixl",
+    "named": false
+  },
+  {
+    "type": "infixr",
+    "named": false
+  },
+  {
+    "type": "max",
+    "named": false
+  },
+  {
+    "type": "notation",
+    "named": false
+  },
+  {
+    "type": "number",
+    "named": true
+  },
+  {
+    "type": "prec",
+    "named": false
+  },
+  {
+    "type": "prefix",
+    "named": false
   },
   {
     "type": "provable",
