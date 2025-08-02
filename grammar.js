@@ -14,6 +14,8 @@
 module.exports = grammar({
   name: 'mm0',
 
+  extras: ($) => [$.comment],
+
   rules: {
     source_file: ($) => repeat($._statement),
 
