@@ -11,12 +11,51 @@
         {
           "type": "identifier",
           "named": true
+        },
+        {
+          "type": "type",
+          "named": true
         }
       ]
     }
   },
   {
-    "type": "free",
+    "type": "type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": "_",
     "named": false
   },
   {
@@ -24,19 +63,19 @@
     "named": true
   },
   {
-    "type": "provable",
-    "named": false
-  },
-  {
-    "type": "pure",
-    "named": false
-  },
-  {
     "type": "sort",
     "named": false
   },
   {
-    "type": "strict",
+    "type": "term",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
     "named": false
   }
 ]

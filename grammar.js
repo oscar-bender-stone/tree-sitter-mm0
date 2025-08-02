@@ -17,29 +17,44 @@ module.exports = grammar({
   rules: {
     source_file: ($) => repeat($._statement),
 
-    _statement: ($) =>
-      choice(
-        $._sort_stmt,
-        // $.term_stmt
-      ),
+    _statement: ($) => choice($._sort_stmt, $._term_stmt),
 
     // Sorts:
     // [https://github.com/digama0/mm0/blob/master/mm0.md#sorts]
     _sort_stmt: ($) =>
       seq(
-        optional('pure'),
-        optional('strict'),
-        optional('provable'),
-        optional('free'),
+        // optional('pure'),
+        // optional('strict'),
+        // optional('provable'),
+        // optional('free'),
         'sort',
         $.identifier,
       ),
 
     // Term constructors
     //  [https://github.com/digama0/mm0/blob/master/mm0.md#term-constructors]
+    _term_stmt: ($) =>
+      seq(
+        'term',
+        $.identifier,
+        repeat($._type_binder),
+        ':',
+        $._arrow_type,
+        ';',
+      ),
+    _type_binder: ($) =>
+      choice(
+        seq('{', repeat($.identifier), ':', $.type, '}'),
+        seq('(', repeat($._identifier_), ':', $.type, ')'),
+      ),
+    _arrow_type: ($) => choice($.type, seq($.type, '>', $._arrow_type)),
+    type: ($) => seq($.identifier, repeat($.identifier)),
+
+    _identifier_: ($) => choice($.identifier, '_'),
 
     // Lexical structure
     // [https://github.com/digama0/mm0/blob/master/mm0.md#lexical-structure]
+
     _lexeme: ($) => choice($._symbol, $.identifier, $.number, $._math_string),
     _symbol: ($) =>
       choice('*', '>', '.', ':', ';', '(', ')', '{', '}', '=', '_'),
