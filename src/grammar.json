@@ -915,12 +915,18 @@
       "value": "\\$[^\\$]*\\$"
     },
     "number": {
-      "type": "PATTERN",
-      "value": "0|[1-9][0-9]*"
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "0|[1-9][0-9]*"
+      }
     },
     "identifier": {
-      "type": "PATTERN",
-      "value": "[a-zA-Z][a-zA-Z0-9_]*"
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[a-zA-Z][a-zA-Z0-9_]*"
+      }
     },
     "_whitestuff": {
       "type": "CHOICE",
@@ -949,17 +955,20 @@
       ]
     },
     "comment": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "--"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[^\\n]*\\n"
-        }
-      ]
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "--"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[^\\n]*\\n"
+          }
+        ]
+      }
     }
   },
   "extras": [

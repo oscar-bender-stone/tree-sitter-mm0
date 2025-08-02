@@ -175,11 +175,11 @@ module.exports = grammar({
     // _math_whitespace: ($) => /( |\n)*/,
     // math_lexeme: ($) => choice($.math_lexeme, $.identifier, '(', ')'),
 
-    number: ($) => /0|[1-9][0-9]*/,
-    identifier: ($) => /[a-zA-Z][a-zA-Z0-9_]*/,
+    number: ($) => token(/0|[1-9][0-9]*/),
+    identifier: ($) => token(/[a-zA-Z][a-zA-Z0-9_]*/),
 
     _whitestuff: ($) => choice($._whitechar, $.comment),
     _whitechar: ($) => choice(' ', '\n'),
-    comment: ($) => seq('--', /[^\n]*\n/),
+    comment: ($) => token(seq('--', /[^\n]*\n/)),
   },
 });

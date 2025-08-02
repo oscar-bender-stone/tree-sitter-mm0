@@ -1,11 +1,5 @@
 [
   {
-    "type": "comment",
-    "named": true,
-    "extra": true,
-    "fields": {}
-  },
-  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -53,10 +47,6 @@
     "named": false
   },
   {
-    "type": "--",
-    "named": false
-  },
-  {
     "type": ".",
     "named": false
   },
@@ -87,6 +77,11 @@
   {
     "type": "coercion",
     "named": false
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "extra": true
   },
   {
     "type": "def",
