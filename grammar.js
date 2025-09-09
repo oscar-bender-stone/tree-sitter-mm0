@@ -179,7 +179,7 @@ module.exports = grammar({
     comment: ($) => token(seq('--', /[^\n]*\n/)),
 
     // Additional highlights
-    keyword: choice('axiom', 'coercion', 'def', 'delimiter', 'free', 'infixl', 'infixlr', 'input', 'max', 'notation', 'output', 'prec', 'prefix', 'provable', 'pure', 'sort', 'strict', 'term', 'theorem')
+    keyword: ($) => choice('axiom', 'coercion', 'def', 'delimiter', 'free', 'infixl', 'infixlr', 'input', 'max', 'notation', 'output', 'prec', 'prefix', 'provable', 'pure', 'sort', 'strict', 'term', 'theorem')
     
   },
 });
