@@ -991,7 +991,7 @@
         ]
       }
     },
-    "keyword": {
+    "keywords": {
       "type": "CHOICE",
       "members": [
         {
