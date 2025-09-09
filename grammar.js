@@ -177,5 +177,9 @@ module.exports = grammar({
     _whitestuff: ($) => choice($._whitechar, $.comment),
     _whitechar: ($) => choice(' ', '\n'),
     comment: ($) => token(seq('--', /[^\n]*\n/)),
+
+    // Additional highlights
+    keyword: choice('axiom', 'coercion', 'def', 'delimiter', 'free', 'infixl', 'infixlr', 'input', 'max', 'notation', 'output', 'prec', 'prefix', 'provable', 'pure', 'sort', 'strict', 'term', 'theorem')
+    
   },
 });
